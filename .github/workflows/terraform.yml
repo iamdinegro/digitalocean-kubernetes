@@ -21,12 +21,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      
+    - name: Mudar para diretório do Terraform
+      run: cd terraform/
 
     - name: Instalando Terraform CLI
       uses: hashicorp/setup-terraform@v1
-    
-    - name: Mudar para diretório do Terraform
-      run: cd terraform/
       
     - name: Terraform Init
       run: terraform init -var "do_token=${{ secrets.DO_PAT }}" -backend-config="access_key=${{ secrets.DO_SPACES_KEY }}" -backend-config="secret_key=${{ secrets.DO_SPACES_SECRET }}" -backend-config="bucket=${{ secrets.DO_SPACE_NAME }}"
